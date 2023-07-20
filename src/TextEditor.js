@@ -14,20 +14,31 @@ import "quill/dist/quill.snow.css"
  * The clearup function will not be called the first time as the its use case is when the next useEffect is being called all the materials that are associated with previous state are cleared
  */
 export default function TextEditor() {
-    const wrapperRef = useRef()
+    // const wrapperRef = useRef()
     
-    useEffect(()=>{
-        const editor = document.createElement('div');
-        wrapperRef.current.append(editor);
-        // console.log("Effect started");
-        new Quill(editor,{theme: "snow"})
+    // useEffect(()=>{
+    //     const editor = document.createElement('div');
+    //     wrapperRef.current.append(editor);
+    //     // console.log("Effect started");
+    //     new Quill(editor,{theme: "snow"})
 
-        return ()=>{
-            // now there is one more  thing taht is if the ref is not defined yet and you started clearingup
-            // so deal with this we will use callbacks
-            wrapperRef.current.innerHTML = "";
-        }
+    //     return ()=>{
+    //         // now there is one more  thing taht is if the ref is not defined yet and you started clearingup
+    //         // so deal with this we will use callbacks
+    //         wrapperRef.current.innerHTML = "";
+    //     }
+    // },[])
+
+    const wrapperRef = useCallback((wrapper)=>{ // wrapper is wrapperRef.current
+        console.log(typeof(wrapper))
+        console.log(wrapper)
+        if(wrapper == null)return
+        wrapper.innerHTML = "";
+        const editor = document.createElement("div");
+        wrapper.append(editor);
+        new Quill(editor,{theme: "snow"});
     },[])
+
 
   return (
         <div id="container" ref={wrapperRef}></div>
