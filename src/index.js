@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import './styles.css'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 /*  React.StrictMode is defined which means that react is running in the strict mode 
     to turn it off you just need to remove the html tags of React.StrictMode
